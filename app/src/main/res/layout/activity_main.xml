@@ -12,12 +12,43 @@
 
     <Button
         android:id="@+id/btnClickMe"
-        android:text="Click me"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:text="Click me" />
+
     <TextView
         android:id="@+id/tvContent"
-        tools:text="You click me at: "
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        tools:text="You click me at: " />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary" />
+
+    <fragment
+        android:id="@+id/frgSend"
+        android:tag="frgSend"
+        class="vnzit.com.samplerxbus.SendFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout="@layout/frg_send" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorPrimary" />
+
+    <fragment
+        android:id="@+id/frgSub"
+        android:tag="frgSub"
+        class="vnzit.com.samplerxbus.SubFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        tools:layout="@layout/frg_sub" />
 </LinearLayout>
