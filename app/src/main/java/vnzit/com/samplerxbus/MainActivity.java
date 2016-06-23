@@ -1,17 +1,13 @@
 package vnzit.com.samplerxbus;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.TextView;
 
-import rx.Subscription;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
+public class MainActivity extends BaseActivity {
 
-public class MainActivity extends AppCompatActivity {
 
-    private Subscription busSubscription;
     TextView tvContent;
 
     @Override
@@ -29,37 +25,9 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        autoUnsubBus();
-        busSubscription = App.get().bus().toObserverable()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        new Action1<Object>() {
-                            @Override
-                            public void call(Object o) {
-                                handlerBus(o);
-                            }
-                        }
-                );
-    }
-
-    private void handlerBus(Object o) {
+    protected void handlerBus(@NonNull  Object o) {
         if (o instanceof Events.Message) {
             tvContent.setText(((Events.Message) o).message);
         }
-    }
-
-    private void autoUnsubBus() {
-        if (busSubscription != null && !busSubscription.isUnsubscribed()) {
-            busSubscription.unsubscribe();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        autoUnsubBus();
     }
 }
